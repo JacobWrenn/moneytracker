@@ -1,0 +1,24 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Build Vue'
+
+- script: |
+    npm install -g firebase-tools
+    firebase deploy --token 1/7nK7WYxEEvJGPlqrRuwTqVnQrSntzJaOAPfQoSAPC0s
+  displayName: 'Firebase Deploy'
