@@ -1,7 +1,13 @@
 service cloud.firestore {
   match /databases/{database}/documents {
+
     match /{document=**} {
-      allow read, write;
+      allow update, delete, read, create: if owner();
     }
+
+    function owner(){
+      return resource.data.user == request.auth.uid;
+    }
+
   }
 }
