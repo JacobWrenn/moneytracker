@@ -1,0 +1,21 @@
+{
+  "dir": "ltr",
+  "lang": "English",
+  "name": "Notes",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "https://notes.wrenn.me/",
+  "short_name": "Electrolysis",
+  "orientation": "any",
+  "background_color": "#dcdcdc",
+  "theme_color": "#2F4F4F",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+      {
+          "src": "logo.png",
+          "sizes": "565x565",
+          "type": "image/png"
+      }
+  ]
+}
