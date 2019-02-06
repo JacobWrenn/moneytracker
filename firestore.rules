@@ -3,7 +3,7 @@ service cloud.firestore {
 
     match /{document=**} {
       allow update, delete, read: if owner();
-      allow create: if true;      allow 
+      allow create: if true;
     }
 
     function owner(){
