@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import currentUser from './firebaseConfig'
 
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     { path: '*', redirect: '/' },
     { path: '/', name: 'home', component: Home, meta: { requiresAuth: true } },
@@ -15,7 +17,6 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  const currentUser = firebase.auth().currentUser
 
   if (requiresAuth && !currentUser) {
     next('/login')
