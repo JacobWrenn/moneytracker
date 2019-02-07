@@ -28,12 +28,6 @@
                 <form v-if="!showLoginForm && !showForgotPassword" @submit.prevent>
                     <h1>Get Started</h1>
 
-                    <label for="name">Name</label>
-                    <input v-model.trim="signupForm.name" type="text" placeholder="Savvy Apps" id="name" />
-
-                    <label for="title">Title</label>
-                    <input v-model.trim="signupForm.title" type="text" placeholder="Company" id="title" />
-
                     <label for="email2">Email</label>
                     <input v-model.trim="signupForm.email" type="text" placeholder="you@email.com" id="email2" />
 
@@ -86,8 +80,6 @@
                     password: ''
                 },
                 signupForm: {
-                    name: '',
-                    title: '',
                     email: '',
                     password: ''
                 },
@@ -120,9 +112,8 @@
                 this.performingRequest = true
                 fb.auth.signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password).then(user => {
                     this.$store.commit('setCurrentUser', user)
-                    this.$store.dispatch('fetchUserProfile')
                     this.performingRequest = false
-                    this.$router.push('/dashboard')
+                    this.$router.push('/')
                 }).catch(err => {
                     console.log(err)
                     this.performingRequest = false
@@ -133,19 +124,8 @@
                 this.performingRequest = true
                 fb.auth.createUserWithEmailAndPassword(this.signupForm.email, this.signupForm.password).then(user => {
                     this.$store.commit('setCurrentUser', user)
-                    // create user obj
-                    fb.usersCollection.doc(user.uid).set({
-                        name: this.signupForm.name,
-                        title: this.signupForm.title
-                    }).then(() => {
-                        this.$store.dispatch('fetchUserProfile')
-                        this.performingRequest = false
-                        this.$router.push('/dashboard')
-                    }).catch(err => {
-                        console.log(err)
-                        this.performingRequest = false
-                        this.errorMsg = err.message
-                    })
+                    this.performingRequest = false
+                    this.$router.push('/')
                 }).catch(err => {
                     console.log(err)
                     this.performingRequest = false
