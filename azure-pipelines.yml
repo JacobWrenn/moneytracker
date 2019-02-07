@@ -4,6 +4,9 @@ trigger:
     include:
     - master
 
+variables:
+- group: secret
+
 pool:
   vmImage: 'Ubuntu-16.04'
 
@@ -20,5 +23,5 @@ steps:
 
 - script: |
     npm install -g firebase-tools
-    firebase deploy --token 1/7nK7WYxEEvJGPlqrRuwTqVnQrSntzJaOAPfQoSAPC0s
+    firebase deploy --token $(token)
   displayName: 'Firebase Deploy'
