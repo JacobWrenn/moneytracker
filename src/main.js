@@ -9,7 +9,7 @@ import './assets/scss/app.scss'
 Vue.config.productionTip = false
 
 let app
-fb.auth.onAuthStateChanged(user => {
+fb.auth.onAuthStateChanged(() => {
     if (!app) {
         app = new Vue({
             el: '#app',

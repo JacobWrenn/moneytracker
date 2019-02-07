@@ -111,11 +111,10 @@
             login() {
                 this.performingRequest = true
                 fb.auth.signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password).then(user => {
-                    this.$store.commit('setCurrentUser', user)
+                    this.$store.commit('setCurrentUser', user.user)
                     this.performingRequest = false
                     this.$router.push('/')
                 }).catch(err => {
-                    console.log(err)
                     this.performingRequest = false
                     this.errorMsg = err.message
                 })
@@ -123,11 +122,10 @@
             signup() {
                 this.performingRequest = true
                 fb.auth.createUserWithEmailAndPassword(this.signupForm.email, this.signupForm.password).then(user => {
-                    this.$store.commit('setCurrentUser', user)
+                    this.$store.commit('setCurrentUser', user.user)
                     this.performingRequest = false
                     this.$router.push('/')
                 }).catch(err => {
-                    console.log(err)
                     this.performingRequest = false
                     this.errorMsg = err.message
                 })
@@ -139,7 +137,6 @@
                     this.passwordResetSuccess = true
                     this.passwordForm.email = ''
                 }).catch(err => {
-                    console.log(err)
                     this.performingRequest = false
                     this.errorMsg = err.message
                 })
