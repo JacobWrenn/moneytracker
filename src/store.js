@@ -4,7 +4,7 @@ const fb = require('./firebaseConfig')
 
 Vue.use(Vuex)
 
-const store =  new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     currentUser: null,
     currentNote: null,
@@ -16,6 +16,9 @@ const store =  new Vuex.Store({
     },
     setCurrentNote(state, val) {
       state.currentNote = val
+    },
+    setNotes(state, val) {
+      state.notes = val
     }
   },
   actions: {
@@ -27,7 +30,19 @@ const store =  new Vuex.Store({
 
 fb.auth.onAuthStateChanged(user => {
   if (user) {
-      store.commit('setCurrentUser', user)
+    store.commit('setCurrentUser', user)
+
+    fb.db.collection(user.uid).orderBy('date', 'desc').onSnapshot(querySnapshot => {
+      let notesArray = []
+
+      querySnapshot.forEach(doc => {
+        let note = doc.data()
+        note.id = doc.id
+        notesArray.push(note)
+      })
+
+      store.commit('setNotes', notesArray)
+    })
   }
 })
 

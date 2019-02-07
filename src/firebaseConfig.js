@@ -17,11 +17,7 @@ firebase.initializeApp(config)
 const db = firebase.firestore()
 const auth = firebase.auth()
 
-// firebase collections
-const notes = db.collection('notes')
-
 export {
     db,
-    auth,
-    notes
+    auth
 }
