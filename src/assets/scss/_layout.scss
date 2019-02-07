@@ -121,7 +121,7 @@ header {
   }
 }
 
-body {
+body, html {
   overflow-y: hidden;
-  height: 100vh;
+  max-height: 100%;
 }
