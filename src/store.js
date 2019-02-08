@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     currentUser: null,
-    currentNote: null,
+    currentNote: {},
     notes: []
   },
   mutations: {
@@ -26,7 +26,7 @@ const store = new Vuex.Store({
       commit('setCurrentUser', null)
     },
     clearNote({ commit }) {
-      commit('setCurrentNote', null)
+      commit('setCurrentNote', {})
     },
     newNote({ commit }) {
       fb.db.collection(this.state.currentUser.uid).add({

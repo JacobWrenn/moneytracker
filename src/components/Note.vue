@@ -1,7 +1,10 @@
 <template>
     <div class="col2 text-center">
-        <div v-if="note">
-            <input @change="updateTitle" v-model="note.title">
+        <div v-if="note.date">
+            <section>
+                <input @change="updateTitle" v-model="note.title">
+                <span class="button" @click="deleteNote">&times;</span>
+            </section>
             <VueTrix v-on:update="updateNote" v-model="note.content"></VueTrix>
         </div>
         <p v-else>No note selected.</p>
@@ -21,6 +24,11 @@ export default {
         },
         updateTitle: function() {
             db.collection(auth.currentUser.uid).doc(this.note.id).update({title:this.note.title})
+        },
+        deleteNote: function() {
+            db.collection(auth.currentUser.uid).doc(this.note.id).delete().then(()=>{
+                this.$store.dispatch('clearNote')
+            })
         }
     },
     watch: {

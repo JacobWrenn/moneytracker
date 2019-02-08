@@ -140,7 +140,7 @@ header {
     height: 85vh;
     overflow: auto;
   }
-  .col1 .button {
+  .button {
     min-width: unset;
   }
   .col2 {
@@ -148,16 +148,16 @@ header {
     flex-basis: 80%;
     overflow: none;
   }
-  section {
+  .col2 section {
     margin: 0;
     max-width: 100%;
+    margin-bottom: 1em;
   }
   input {
     background: #fff;
     border: 1px solid #bbb;
     border-radius: 3px;
     margin: 0;
-    margin-bottom: 1em;
     padding: 0.4em 0.6em;
     width: 100%;
     outline: none;
