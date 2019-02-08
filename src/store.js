@@ -24,6 +24,9 @@ const store = new Vuex.Store({
   actions: {
     clearData({ commit }) {
       commit('setCurrentUser', null)
+    },
+    clearNote({ commit }) {
+      commit('setCurrentNote', null)
     }
   }
 })
