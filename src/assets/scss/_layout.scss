@@ -121,6 +121,9 @@ header {
   }
 }
 
-body {
+body, html {
   overflow-y: hidden;
+  max-height: 100%;
+  position: fixed;
+  width:100%;
 }
