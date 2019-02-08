@@ -179,6 +179,7 @@ form {
   }
 
   input {
+    background-clip: padding-box;
     display: block;
     width: 100%;
     margin-bottom: 1rem;
