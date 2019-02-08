@@ -163,6 +163,8 @@ header {
     display: block;
     font: unset;
     color: unset;
+    margin-right: 8px;
+    background-clip: padding-box;
   }
   trix-toolbar {
     top: 0;
