@@ -1,13 +1,15 @@
 <template>
     <header>
         <section>
-            <div class="col1">
-                <router-link to="/"><h3>Notes</h3></router-link>
-                <ul class="inline">
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><a @click="logout">Logout</a></li>
-                </ul>
-            </div>
+            <a @click="clearNote">
+                <img src='@/assets/logo.png'>
+                <h3>Notes</h3>
+            </a>
+            <ul class="inline">
+                <li><a @click="clearNote">Home</a></li>
+                <li><a @click="logout">Logout</a></li>
+                <li><span class="button" @click="newNote">New Note</span></li>
+            </ul>
         </section>
     </header>
 </template>
@@ -24,6 +26,12 @@
                     this.$router.push('/login')
                 }).catch(() => {
                 })
+            },
+            clearNote() {
+                this.$store.dispatch('clearNote')
+            },
+            newNote() {
+                this.$store.dispatch('newNote')
             }
         }
     }

@@ -27,6 +27,18 @@ const store = new Vuex.Store({
     },
     clearNote({ commit }) {
       commit('setCurrentNote', null)
+    },
+    newNote({ commit }) {
+      fb.db.collection(this.state.currentUser.uid).add({
+        date: fb.firebase.firestore.FieldValue.serverTimestamp(),
+        title: '',
+        content: ''
+      }).then(doc => {
+        doc.get().then(data => {
+          let note = { id: doc.id, ...data.data() }
+          commit('setCurrentNote', note)
+        })
+      })
     }
   }
 })
@@ -35,7 +47,7 @@ fb.auth.onAuthStateChanged(user => {
   if (user) {
     store.commit('setCurrentUser', user)
 
-    fb.db.collection(user.uid).orderBy('date', 'desc').onSnapshot(querySnapshot => {
+    fb.db.collection(user.uid).orderBy('date').onSnapshot(querySnapshot => {
       let notesArray = []
 
       querySnapshot.forEach(doc => {
