@@ -11,7 +11,7 @@
         v-on:update="updateNote"
         v-model="note.content"
       ></VueTrix>
-      <VueTrix class="hidden"></VueTrix>
+      <div id="hidden-div" class="hidden"></div>
     </div>
     <p v-else>No note selected.</p>
   </div>
@@ -62,8 +62,8 @@ export default {
     note: function (newNote, oldNote) {
       if (document.querySelector('trix-editor')) document.querySelector('trix-editor').value = this.note.content
       for (let img of this.toDelete) {
-        let trix = document.getElementsByTagName('trix-editor')[1]
-        trix.value = oldNote.content
+        let trix = document.getElementById('hidden-div')
+        trix.innerHTML = oldNote.content
         let notfound = true
         for (let image of trix.getElementsByTagName('img')) {
           if (image.src == img.url) notfound = false
