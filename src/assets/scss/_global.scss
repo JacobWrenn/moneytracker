@@ -25,6 +25,7 @@ html {
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
   transition: 0.15s;
+  user-select: none;
 
   &:focus {
     outline: none;
@@ -221,4 +222,13 @@ trix-editor {
   background: $white;
   height: 65vh;
   overflow: auto;
+}
+
+ol,
+ul {
+  list-style-position: inside;
+}
+
+.hidden {
+  display: none;
 }
