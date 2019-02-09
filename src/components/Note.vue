@@ -34,6 +34,7 @@ export default {
     },
     deleteNote: function () {
       db.collection(auth.currentUser.uid).doc(this.note.id).delete().then(() => {
+        document.querySelector('trix-editor').value = ''
         this.$store.dispatch('clearNote')
       })
     },
