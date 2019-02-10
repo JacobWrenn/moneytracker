@@ -1,15 +1,15 @@
 <template>
   <div class="col2 text-center">
-    <div v-if="note.date">
+    <div v-if="currentNote.date">
       <section>
-        <input @change="updateTitle" v-model="note.title">
+        <input @keyup="updateTitle" v-model="currentNote.title">
         <span class="button" @click="deleteNote">&times;</span>
       </section>
       <VueTrix
         @trix-attachment-add="uploadFile"
         @trix-attachment-remove="deleteFile"
         v-on:update="updateNote"
-        v-model="note.content"
+        v-model="currentNote.content"
       ></VueTrix>
       <div id="hidden-div" class="hidden"></div>
     </div>
@@ -18,23 +18,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import VueTrix from "vue-trix";
 import { db, auth, storage, firebase } from "../firebaseConfig";
 
 export default {
-  data: function () { return { toDelete: [] } },
-  props: ['note'],
+  computed: mapState(['currentNote', 'toDelete']),
   components: { VueTrix },
   methods: {
     updateNote: function () {
-      db.collection(auth.currentUser.uid).doc(this.note.id).update({ content: this.note.content })
+      db.collection(auth.currentUser.uid).doc(this.currentNote.id).update({ content: this.currentNote.content })
     },
     updateTitle: function () {
-      db.collection(auth.currentUser.uid).doc(this.note.id).update({ title: this.note.title })
+      db.collection(auth.currentUser.uid).doc(this.currentNote.id).update({ title: this.currentNote.title })
     },
     deleteNote: function () {
-      db.collection(auth.currentUser.uid).doc(this.note.id).delete().then(() => {
+      db.collection(auth.currentUser.uid).doc(this.currentNote.id).delete().then(() => {
         document.querySelector('trix-editor').value = ''
+        this.currentNote.content=''
         this.$store.dispatch('clearNote')
       })
     },
@@ -56,12 +57,12 @@ export default {
       }
     },
     deleteFile: function (e) {
-      this.toDelete.push({ id: e.attachment.attachment.attributes.values.id, url: e.attachment.attachment.attributes.values.url })
+      if(e.attachment.attachment.attributes.values.id)this.$store.commit('toDelete', { id: e.attachment.attachment.attributes.values.id, url: e.attachment.attachment.attributes.values.url })
     }
   },
   watch: {
-    note: function (newNote, oldNote) {
-      if (document.querySelector('trix-editor')) document.querySelector('trix-editor').value = this.note.content
+    currentNote: function (newNote, oldNote) {
+      if (document.querySelector('trix-editor')) document.querySelector('trix-editor').value = this.currentNote.content
       for (let img of this.toDelete) {
         let trix = document.getElementById('hidden-div')
         trix.innerHTML = oldNote.content
@@ -73,7 +74,7 @@ export default {
           storage.ref().child(img.id).delete()
         }
       }
-      this.toDelete=[]
+      this.$store.dispatch('clearDelete')
     }
   }
 }

@@ -1,8 +1,8 @@
 <template>
     <div id="home">
         <section>
-            <Sidebar v-bind:notes="notes"></Sidebar>
-            <Note v-bind:note="currentNote"></Note>
+            <Sidebar v-bind:notes="notes" v-bind:currentNote="currentNote"></Sidebar>
+            <Note></Note>
         </section>
     </div>
 </template>
@@ -14,6 +14,6 @@ import Note from '@/components/Note'
 
 export default {
   components: { Sidebar, Note },
-  computed: mapState(['currentNote', 'notes'])
+  computed: mapState(['notes', 'currentNote'])
 }
 </script>

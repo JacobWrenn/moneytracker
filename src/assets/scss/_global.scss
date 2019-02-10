@@ -80,8 +80,6 @@ a {
 // globals
 section {
   display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
 
   @media screen and (max-width: 742px) {
     display: block;
@@ -151,6 +149,9 @@ section {
     &:hover {
       background: $primary;
     }
+  }
+  &.active {
+    background: lighten($primary, 5%);
   }
 }
 
