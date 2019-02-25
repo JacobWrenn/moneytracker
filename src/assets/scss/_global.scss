@@ -1,6 +1,6 @@
 // imports
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
+button, a, input[type="button"]{user-select:none}
 // colors
 $primary: #31b5ab;
 $error: #ef5777;
@@ -25,7 +25,6 @@ html {
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
   transition: 0.15s;
-  user-select: none;
 
   &:focus {
     outline: none;
