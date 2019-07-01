@@ -1,5 +1,5 @@
-# Notes
+# Money Tracker
 
-![Build Status](https://dev.azure.com/jacobwrenn/Notes/_apis/build/status/JacobWrenn.Notes?branchName=master)
+![Build Status](https://dev.azure.com/jacobwrenn/Money%20Tracker/_apis/build/status/JacobWrenn.moneytracker?branchName=master)
 
-A simple notes app.
+Create automatically totalling lists of money.
