@@ -1,8 +1,12 @@
 // imports
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-button, a, input[type="button"]{user-select:none}
+button,
+a,
+input[type="button"] {
+  user-select: none;
+}
 // colors
-$primary: #BAA42A;
+$primary: #baa42a;
 $error: #ef5777;
 $success: #1abc9c;
 $light: #f5f8fa;
@@ -218,10 +222,11 @@ form {
   opacity: 0;
 }
 
-trix-editor {
-  background: $white;
-  height: 65vh;
-  overflow: auto;
+.large {
+  font-size: 2em;
+  strong {
+    font-size: 1.2em;
+  }
 }
 
 ol,
@@ -231,4 +236,15 @@ ul {
 
 .hidden {
   display: none;
+}
+
+.error {
+  color: $error;
+}
+.success {
+  color: $success;
+}
+
+.flexfill {
+  flex-grow: 1;
 }

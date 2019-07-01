@@ -182,3 +182,18 @@ header {
     background-color: #e6ecf0;
   }
 }
+
+.item {
+  background: $light;
+  border-radius: .5em;
+  padding: .5em;
+  p,
+  strong {
+    margin: auto;
+  }
+  strong {
+    text-align: end;
+    margin-right: 1em;
+    font-size: 1.8em;
+  }
+}

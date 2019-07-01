@@ -32,7 +32,7 @@ const store = new Vuex.Store({
       fb.db.collection(this.state.currentUser.uid).add({
         date: fb.firebase.firestore.FieldValue.serverTimestamp(),
         title: '',
-        content: { items: [] }
+        content: { items: [], total: "" }
       }).then(doc => {
         doc.get().then(data => {
           let note = { id: doc.id, ...data.data() }

@@ -3,12 +3,12 @@
         <section>
             <a @click="clearNote">
                 <img src='@/assets/logo.png'>
-                <h3>Notes</h3>
+                <h3>Money Tracker</h3>
             </a>
             <ul class="inline">
                 <li><a @click="clearNote">Home</a></li>
                 <li><a @click="logout">Logout</a></li>
-                <li><span class="button" @click="newNote">New Note</span></li>
+                <li><span class="button" @click="newNote">New List</span></li>
             </ul>
         </section>
     </header>
