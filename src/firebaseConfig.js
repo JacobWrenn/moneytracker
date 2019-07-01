@@ -1,27 +1,25 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import 'firebase/storage'
 
 // firebase init goes here
 const config = {
-    apiKey: "AIzaSyCbrq84Nyn9upzEmpRSIbfuvWMT0QUMqSA",
-    authDomain: "notes.wrenn.me",
-    databaseURL: "https://notes-6398f.firebaseio.com",
-    projectId: "notes-6398f",
-    storageBucket: "notes-6398f.appspot.com",
-    messagingSenderId: "444355898601"
-  }
+  apiKey: "AIzaSyAM2Zlcc72x7peaQOwLfzuAMLnMEhKkQOw",
+  authDomain: "moneytracker.wrenn.me",
+  databaseURL: "https://money-tracker-65bde.firebaseio.com",
+  projectId: "money-tracker-65bde",
+  storageBucket: "money-tracker-65bde.appspot.com",
+  messagingSenderId: "1064274161603",
+  appId: "1:1064274161603:web:9d7e30cd51aa6497"
+};
 firebase.initializeApp(config)
 
 // firebase utils
 const db = firebase.firestore()
 const auth = firebase.auth()
-const storage = firebase.storage()
 
 export {
     db,
     auth,
-    storage,
     firebase
 }

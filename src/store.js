@@ -8,8 +8,7 @@ const store = new Vuex.Store({
   state: {
     currentUser: null,
     currentNote: {},
-    notes: [],
-    toDelete: []
+    notes: []
   },
   mutations: {
     setCurrentUser(state, val) {
@@ -20,17 +19,11 @@ const store = new Vuex.Store({
     },
     setNotes(state, val) {
       state.notes = val
-    },
-    toDelete(state, val) {
-      state.toDelete.push(val)
     }
   },
   actions: {
     clearData({ commit }) {
       commit('setCurrentUser', null)
-    },
-    clearDelete({ state }) {
-      state.toDelete = []
     },
     clearNote({ commit }) {
       commit('setCurrentNote', {})
@@ -39,7 +32,7 @@ const store = new Vuex.Store({
       fb.db.collection(this.state.currentUser.uid).add({
         date: fb.firebase.firestore.FieldValue.serverTimestamp(),
         title: '',
-        content: ''
+        content: { items: [] }
       }).then(doc => {
         doc.get().then(data => {
           let note = { id: doc.id, ...data.data() }
