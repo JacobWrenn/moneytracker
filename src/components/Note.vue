@@ -50,8 +50,9 @@ export default {
         this.currentNote.content.items.push({value: stringvalue, label, id: this.currentNote.content.id+=1});
         let total = 0;
         for (let item of this.currentNote.content.items) {
-          total += Number(item.value)
+          total += Number(item.value)*100
         }
+        total = total/100
         let sign;
         if (String(total).substring(0,1) != "-") {
           sign = "+"
@@ -68,8 +69,9 @@ export default {
       this.currentNote.content.items = this.currentNote.content.items.filter((value)=>value.id!=id)
       let total = 0;
       for (let item of this.currentNote.content.items) {
-        total += Number(item.value)
+        total += Number(item.value)*100
       }
+      total = total/100
       let sign;
       if (String(total).substring(0,1) != "-") {
         sign = "+"
