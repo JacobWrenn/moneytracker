@@ -1,8 +1,8 @@
 <template>
     <div id="home">
         <section>
-            <Sidebar v-bind:notes="notes" v-bind:currentNote="currentNote"></Sidebar>
-            <Note></Note>
+            <Sidebar v-bind:lists="lists" v-bind:currentList="currentList"></Sidebar>
+            <List></List>
         </section>
     </div>
 </template>
@@ -10,10 +10,10 @@
 <script>
 import { mapState } from 'vuex'
 import Sidebar from '@/components/Sidebar'
-import Note from '@/components/Note'
+import List from '@/components/List'
 
 export default {
-  components: { Sidebar, Note },
-  computed: mapState(['notes', 'currentNote'])
+  components: { Sidebar, List },
+  computed: mapState(['lists', 'currentList'])
 }
 </script>

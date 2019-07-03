@@ -147,7 +147,8 @@ header {
   .col2 {
     height: 85vh;
     flex-basis: 80%;
-    overflow: none;
+    overflow: auto;
+    padding-top: 0;
   }
   .col2 > p {
     position: relative;
@@ -196,4 +197,21 @@ header {
     margin-right: 1em;
     font-size: 1.8em;
   }
+}
+
+.valueinput {
+  width: auto!important;
+  margin-left: auto!important;
+}
+
+.nomargin {
+  margin: 0!important
+}
+
+#toolbar {
+  position: sticky;
+  top: 0;
+  background: $body;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
 }

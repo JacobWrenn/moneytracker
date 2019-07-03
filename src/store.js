@@ -7,36 +7,36 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     currentUser: null,
-    currentNote: {},
-    notes: []
+    currentList: {},
+    lists: []
   },
   mutations: {
     setCurrentUser(state, val) {
       state.currentUser = val
     },
-    setCurrentNote(state, val) {
-      state.currentNote = val
+    setcurrentList(state, val) {
+      state.currentList = val
     },
-    setNotes(state, val) {
-      state.notes = val
+    setLists(state, val) {
+      state.lists = val
     }
   },
   actions: {
     clearData({ commit }) {
       commit('setCurrentUser', null)
     },
-    clearNote({ commit }) {
-      commit('setCurrentNote', {})
+    clearList({ commit }) {
+      commit('setcurrentList', {})
     },
-    newNote({ commit }) {
+    newList({ commit }) {
       fb.db.collection(this.state.currentUser.uid).add({
         date: fb.firebase.firestore.FieldValue.serverTimestamp(),
         title: '',
         content: { items: [], total: "" }
       }).then(doc => {
         doc.get().then(data => {
-          let note = { id: doc.id, ...data.data() }
-          commit('setCurrentNote', note)
+          let list = { id: doc.id, ...data.data() }
+          commit('setcurrentList', list)
         })
       })
     }
@@ -48,15 +48,15 @@ fb.auth.onAuthStateChanged(user => {
     store.commit('setCurrentUser', user)
 
     fb.db.collection(user.uid).orderBy('date').onSnapshot(querySnapshot => {
-      let notesArray = []
+      let listsArray = []
 
       querySnapshot.forEach(doc => {
-        let note = doc.data()
-        note.id = doc.id
-        notesArray.unshift(note)
+        let list = doc.data()
+        list.id = doc.id
+        listsArray.unshift(list)
       })
 
-      store.commit('setNotes', notesArray)
+      store.commit('setLists', listsArray)
     })
   }
 })

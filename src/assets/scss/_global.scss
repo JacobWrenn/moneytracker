@@ -13,11 +13,12 @@ $light: #f5f8fa;
 $medium: #657786;
 $dark: #34495e;
 $white: #fff;
+$body: #e6ecf0;
 // resets
 body {
   margin: 0;
   color: $dark;
-  background: #e6ecf0;
+  background: $body;
 }
 
 html {

@@ -1,20 +1,20 @@
 <template>
   <div class="col1">
-    <div v-for="note in notes" :key="note.id">
-      <p class="button" @click="showNote(note)" v-bind:class="{'active':isActive(note.id)}">{{ note.title }}</p>
+    <div v-for="list in lists" :key="list.id">
+      <p class="button" @click="showList(list)" v-bind:class="{'active':isActive(list.id)}">{{ list.title }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['notes', 'currentNote'],
+  props: ['lists', 'currentList'],
   methods: {
-    showNote: function (note) {
-      this.$store.commit('setCurrentNote', note)
+    showList: function (list) {
+      this.$store.commit('setcurrentList', list)
     },
     isActive: function (id) {
-        return id === this.currentNote.id
+        return id === this.currentList.id
     }
   }
 }
