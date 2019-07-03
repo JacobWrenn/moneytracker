@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <section>
+        <section id="main">
             <Sidebar v-bind:lists="lists" v-bind:currentList="currentList"></Sidebar>
             <List></List>
         </section>

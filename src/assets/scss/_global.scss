@@ -84,9 +84,20 @@ a {
 // globals
 section {
   display: flex;
+}
 
-  @media screen and (max-width: 742px) {
+@media screen and (max-width: 742px) {
+  #main {
     display: block;
+  }
+  .button {
+    margin: auto;
+  }
+  .large {
+    font-size: 1.2em!important;
+  }
+  .item strong {
+    font-size: 1.1em!important;
   }
 }
 
@@ -97,6 +108,7 @@ section {
   padding: 1rem;
 
   @media screen and (max-width: 742px) {
+    height: auto !important;
   }
 }
 
@@ -156,6 +168,9 @@ section {
   }
   &.active {
     background: lighten($primary, 5%);
+  }
+  @media screen and (max-width: 742px) {
+    padding: 0.4rem 0.5rem;
   }
 }
 
