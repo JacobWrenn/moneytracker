@@ -33,15 +33,9 @@
   const isEdgePWA = (typeof Windows !== 'undefined');
   
   var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-  
-  if (iOS) { document.querySelector('link[rel="manifest"]').setAttribute("rel", "pwa-setup"); }
 
   function setup() {
-    if (iOS) {
-      var manifestEl = document.head.querySelector('link[rel="pwa-setup"]');
-    } else {
-      var manifestEl = document.head.querySelector('link[rel="manifest"]');
-    }
+    var manifestEl = document.head.querySelector('link[rel="manifest"]');
     var manifestHref = manifestEl ? manifestEl.href : '';
     var hrefFactory = buildHrefFactory([manifestHref, window.location]);
 
