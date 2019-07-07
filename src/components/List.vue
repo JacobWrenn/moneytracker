@@ -13,7 +13,7 @@
         </section>
       </div>
       <section class="item" v-for="item in this.currentList.content.items" :key="item.id">
-        <p class="large nomargin">{{item.label}}</p>
+        <Label v-bind:label="item.label" @update="updateLabel($event, item)"></Label>
         <Value v-bind:value="item.value" @update="updateValue($event, item)"></Value>
         <span class="button" @click="deleteItem(item.id)">&times;</span>
       </section>
@@ -32,9 +32,10 @@
 import { mapState } from 'vuex';
 import { db, auth } from "../firebaseConfig";
 import Value from "@/components/Value"
+import Label from "@/components/Label"
 
 export default {
-  components: { Value },
+  components: { Value, Label },
   computed: mapState(['currentList', 'toDelete']),
   data: function () { return { label: undefined, value: undefined } },
   methods: {
@@ -62,6 +63,10 @@ export default {
           sign = ""
         }
         this.currentList.content.total = sign + total
+        db.collection(auth.currentUser.uid).doc(this.currentList.id).update({ content: this.currentList.content })
+    },
+    updateLabel: function (label, item) {
+        item.label = label
         db.collection(auth.currentUser.uid).doc(this.currentList.id).update({ content: this.currentList.content })
     },
     deleteList: function () {
