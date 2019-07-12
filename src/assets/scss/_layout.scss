@@ -71,11 +71,12 @@ header {
     height: 100vh;
     background: $white;
   }
+  
+  .col1 {height:100vh}
 
   .col1,
   .col2 {
-    height: 100vh;
-    padding-top: 30vh;
+    padding-top: 20vh;
 
     @media screen and (max-width: 742px) {
       height: auto;
